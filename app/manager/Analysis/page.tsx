@@ -6,11 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { 
-  Search, 
-  ScanLine, 
-  FileText, 
-  Bell, 
-  ChevronDown,
   DollarSign,
   TrendingUp,
   Package,
@@ -35,9 +30,9 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
-  Area,
-  AreaChart
 } from 'recharts';
+import Sidebar from '@/components/ui/Sidebar';
+import Header from '@/components/ui/Header';
 
 const salesTrendsData = [
   { day: 'SUN', value: 18 },
@@ -60,100 +55,32 @@ const comparisonData = [
 ];
 
 export default function AnalysisPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [timeFilter, setTimeFilter] = useState('This week');
   const [categoryFilter, setCategoryFilter] = useState('Vegetables');
   const [topProductsFilter, setTopProductsFilter] = useState('This month');
   const [employeeFilter, setEmployeeFilter] = useState('This month');
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-blue-600 font-bold text-xl">
-              <Package className="h-6 w-6" />
-              SwiftCart
-            </div>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-            <div className="relative flex-1 sm:flex-none sm:w-80">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <input
-                type="text"
-                placeholder="Search here for product, order......"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <Button variant="outline" className="bg-blue-500 text-white border-blue-500 hover:bg-blue-600">
-              <ScanLine className="h-4 w-4 mr-2" />
-              Scan Barcode
-            </Button>
-            <Button variant="outline" className="border-gray-300">
-              <FileText className="h-4 w-4 mr-2" />
-              Create bill
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Bell className="h-4 w-4" />
-            </Button>
-            <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" />
-                <AvatarFallback>CM</AvatarFallback>
-              </Avatar>
-              <div className="hidden sm:block">
-                <p className="font-medium text-sm">Christina</p>
-                <p className="text-xs text-gray-500">Manager</p>
-              </div>
-              <ChevronDown className="h-4 w-4 text-gray-400" />
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-slate-50 flex">
+      {/* Fixed Sidebar */}
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
 
-      <div className="flex">
-        {/* Sidebar */}
-        <aside className="hidden lg:block w-64 bg-white border-r border-gray-200 min-h-screen">
-          <nav className="p-6 space-y-2">
-            <a href="/manager/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <div className="h-5 w-5 border-2 border-gray-400 rounded"></div>
-              <span className="font-medium">DASHBOARD</span>
-            </a>
-            <a href="/manager/analysis" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-100 text-blue-600">
-              <div className="h-5 w-5 bg-blue-600 rounded"></div>
-              <span className="font-medium">ANALYSIS</span>
-            </a>
-            <a href="/manager/inventory" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <Package className="h-5 w-5" />
-              <span className="font-medium">INVENTORY</span>
-            </a>
-            <a href="/manager/customers" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <div className="h-5 w-5 rounded-full border-2 border-gray-400"></div>
-              <span className="font-medium">CUSTOMERS</span>
-            </a>
-            <a href="/manager/help" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <div className="h-5 w-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
-                <span className="text-xs font-bold">?</span>
-              </div>
-              <span className="font-medium">HELP</span>
-            </a>
-          </nav>
-          
-          <div className="absolute bottom-6 left-6 space-y-2 w-52">
-            <a href="/manager/settings" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <div className="h-5 w-5 border border-gray-400 rounded-sm"></div>
-              <span className="font-medium">SETTINGS</span>
-            </a>
-            <a href="/logout" className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50">
-              <div className="h-5 w-5 border border-gray-400 rounded-sm"></div>
-              <span className="font-medium">LOG OUT</span>
-            </a>
-          </div>
-        </aside>
+      {/* Main Content - Adjusted for fixed sidebar */}
+      <div className="flex-1 flex flex-col lg:ml-72">
+        {/* Header */}
+        <Header 
+          onMenuToggle={() => setIsSidebarOpen(true)}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
 
-        {/* Main Content */}
-        <main className="flex-1 p-4 lg:p-6">
+        {/* Main Content Area */}
+        <main className="flex-1 overflow-auto p-4 lg:p-6">
           {/* Metrics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <Card className="bg-gradient-to-br from-blue-400 to-blue-500 text-white">
@@ -423,10 +350,8 @@ export default function AnalysisPage() {
                 <CardContent className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                        <div className="w-8 h-10 bg-blue-100 rounded-sm flex items-center justify-center">
-                          🥛
-                        </div>
+                      <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl">
+                        🥛
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
@@ -447,7 +372,7 @@ export default function AnalysisPage() {
 
                   <div className="p-4 border rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-2xl">
                         🍞
                       </div>
                       <div className="flex-1">
@@ -469,7 +394,7 @@ export default function AnalysisPage() {
 
                   <div className="p-4 border rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-2xl">
                         🧽
                       </div>
                       <div className="flex-1">
@@ -496,7 +421,7 @@ export default function AnalysisPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="h-5 w-5 text-gray-600">👥</div>
+                      <div className="text-xl">👥</div>
                       <CardTitle className="text-lg font-semibold">Employees</CardTitle>
                     </div>
                     <div className="flex items-center gap-2">

@@ -18,8 +18,8 @@ interface HeaderProps {
 
 export default function Header({ onMenuToggle, searchTerm = '', onSearchChange }: HeaderProps) {
   return (
-    <header className="bg-white border-b px-4 lg:px-6 py-4">
-      <div className="flex items-center justify-between">
+    <header className="bg-white border-b px-4 lg:px-6 h-20 flex items-center">
+      <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-4 flex-1">
           <Button 
             variant="ghost" 

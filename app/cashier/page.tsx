@@ -28,7 +28,7 @@ import {
   MoreHorizontal
 } from 'lucide-react';
 import Sidebar from '@/components/ui/Sidebar';
-import Header from '@/components/ui//Header';
+import Header from '@/components/ui/Header';
 
 interface Product {
   id: string;
@@ -129,22 +129,22 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
+      {/* Fixed Sidebar */}
       <Sidebar 
-              isOpen={isSidebarOpen} 
-              onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
-            />
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
 
-      
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-0">
+      {/* Main Content - Adjusted for fixed sidebar */}
+      <div className="flex-1 flex flex-col lg:ml-72">
+        {/* Header */}
         <Header 
-                  onMenuToggle={() => setIsSidebarOpen(true)}
-                  searchTerm={searchTerm}
-                  onSearchChange={setSearchTerm}
-                />
+          onMenuToggle={() => setIsSidebarOpen(true)}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
         
-
+        {/* Dashboard Content with Cart */}
         <div className="flex flex-1 overflow-hidden">
           {/* Main Dashboard Content */}
           <main className="flex-1 overflow-auto">
@@ -276,7 +276,7 @@ export default function Dashboard() {
             </div>
           </main>
 
-          {/* Cart Sidebar */}
+          {/* Cart Sidebar - Fixed on right */}
           <aside className="w-80 bg-white border-l shadow-lg flex flex-col max-h-screen">
             <div className="p-4 border-b">
               <div className="flex items-center gap-2 mb-4">

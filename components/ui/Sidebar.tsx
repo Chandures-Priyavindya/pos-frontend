@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { 
   ShoppingCart, 
@@ -9,7 +8,6 @@ import {
   HelpCircle,
   Settings,
   LogOut,
-  Menu,
   X
 } from 'lucide-react';
 import Link from 'next/link';
@@ -54,12 +52,16 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Fixed Sidebar */}
       <div className={`
-        fixed lg:static inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        fixed top-0 left-0 z-50 w-72 h-screen bg-white shadow-xl 
+        transform transition-transform duration-300 ease-in-out
+        flex flex-col
+        lg:translate-x-0
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="flex items-center justify-between p-6 border-b">
+        {/* Header - Fixed Height */}
+        <div className="flex items-center justify-between p-6 border-b flex-shrink-0">
           <div className="flex items-center gap-3">
             <ShoppingCart className="h-8 w-8 text-blue-600" />
             <span className="text-xl font-bold text-slate-800">SwiftCart</span>
@@ -74,7 +76,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
           </Button>
         </div>
 
-        <nav className="p-4 space-y-2">
+        {/* Navigation - Scrollable Middle Section */}
+        <nav className="p-4 space-y-2 flex-1 overflow-y-auto">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -86,6 +89,12 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                       ? 'bg-blue-500 hover:bg-blue-600 text-white' 
                       : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
                   }`}
+                  onClick={() => {
+                    // Close mobile sidebar on navigation
+                    if (window.innerWidth < 1024) {
+                      onToggle();
+                    }
+                  }}
                 >
                   <Icon className="h-5 w-5" />
                   {item.label}
@@ -95,7 +104,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
           })}
         </nav>
 
-        <div className="absolute bottom-4 left-4 right-4 space-y-2">
+        {/* Footer - Fixed at Bottom */}
+        <div className="p-4 space-y-2 border-t flex-shrink-0">
           <Button variant="ghost" className="w-full justify-start gap-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100">
             <Settings className="h-5 w-5" />
             SETTINGS

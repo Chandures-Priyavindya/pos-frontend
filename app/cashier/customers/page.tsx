@@ -15,7 +15,7 @@ import {
   Plus
 } from 'lucide-react';
 import Sidebar from '@/components/ui/Sidebar';
-import Header from '@/components/ui//Header';
+import Header from '@/components/ui/Header';
 
 interface Customer {
   id: string;
@@ -145,8 +145,8 @@ const getLoyaltyBadgeColor = (status: string) => {
 };
 
 export default function CustomersPage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const filteredCustomers = customers.filter(customer =>
     customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -156,23 +156,26 @@ export default function CustomersPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
+      {/* Fixed Sidebar */}
       <Sidebar 
         isOpen={isSidebarOpen} 
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
       />
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-0">
+      {/* Main Content - Adjusted for fixed sidebar */}
+      <div className="flex-1 flex flex-col lg:ml-72">
+        {/* Header */}
         <Header 
           onMenuToggle={() => setIsSidebarOpen(true)}
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
         />
 
+        {/* Main Content Area */}
         <main className="flex-1 overflow-auto p-4 lg:p-6">
           {/* Page Header */}
-          <div className="bg-white rounded-lg p-6 mb-6">
-            <div className="flex items-center justify-between">
+          <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
+            <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                   <Users className="h-6 w-6 text-blue-600" />
@@ -329,7 +332,7 @@ export default function CustomersPage() {
 
           {/* Empty State */}
           {filteredCustomers.length === 0 && (
-            <div className="bg-white rounded-lg p-12 text-center">
+            <div className="bg-white rounded-lg p-12 text-center shadow-sm">
               <Users className="h-16 w-16 text-slate-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-slate-600 mb-2">No customers found</h3>
               <p className="text-slate-500 mb-6">Try adjusting your search terms or add a new customer.</p>
