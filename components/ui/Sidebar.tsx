@@ -8,7 +8,9 @@ import {
   HelpCircle,
   Settings,
   LogOut,
-  X
+  X,
+  BarChart3,
+  Package
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,26 +23,53 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const pathname = usePathname();
 
-  const navigationItems = [
+  // Check if we're on manager or admin analysis pages
+  const isManagerOrAdminRoute = pathname?.startsWith('/manager') || pathname?.startsWith('/admin');
+
+  // Base navigation items (always visible)
+  const baseNavigationItems = [
     {
       href: '/cashier',
       icon: LayoutDashboard,
       label: 'DASHBOARD',
-      isActive: pathname === '/cashier'
+      isActive: pathname === '/cashier' || pathname === '/manager' || pathname === '/admin'
+    }
+  ];
+
+  // Conditional navigation items (only for manager/admin routes)
+  const conditionalNavigationItems = isManagerOrAdminRoute ? [
+    {
+      href: '/manager/analysis',
+      icon: BarChart3,
+      label: 'ANALYSIS',
+      isActive: pathname === '/manager/analysis' || pathname === '/manager/Analysis' || pathname === '/admin/Analysis'
     },
+    {
+      href: '/manager/inventory',
+      icon: Package,
+      label: 'INVENTORY',
+      isActive: pathname === '/manager/inventory' || pathname === '/admin/inventory'
+    }
+  ] : [];
+
+  // Common navigation items (always visible)
+  const commonNavigationItems = [
     {
       href: '/cashier/customers',
       icon: Users,
       label: 'CUSTOMERS',
-      isActive: pathname === '/cashier/customers'
+      isActive: pathname === '/cashier/customers' || pathname === '/manager/customers' || pathname === '/admin/customers'
     },
     {
       href: '/cashier/help',
       icon: HelpCircle,
       label: 'HELP',
-      isActive: pathname === '/cashier/help'
+      isActive: pathname === '/cashier/help' || pathname === '/manager/help' || pathname === '/admin/help'
     }
   ];
+
+  // Combine all navigation items
+  const navigationItems = [...baseNavigationItems, ...conditionalNavigationItems, ...commonNavigationItems];
 
   return (
     <>

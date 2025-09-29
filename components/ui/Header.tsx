@@ -2,12 +2,14 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import { 
   Search, 
   ScanLine, 
   FileText, 
   ChevronDown,
-  Menu
+  Menu,
+  Bell
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -51,7 +53,24 @@ export default function Header({ onMenuToggle, searchTerm = '', onSearchChange }
             <span className="hidden sm:inline">Create bill</span>
           </Button>
           
-          <div className="flex items-center gap-2 ml-4">
+          {/* Notification Bell */}
+          <div className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="relative hover:bg-slate-100"
+            >
+              <Bell className="h-5 w-5 text-slate-600" />
+              {/* Notification Badge */}
+              <Badge 
+                className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-red-500 hover:bg-red-500 text-white text-xs"
+              >
+                3
+              </Badge>
+            </Button>
+          </div>
+          
+          <div className="flex items-center gap-2 ml-2">
             <div className="w-8 h-8 rounded-full bg-slate-300 overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=50" 
