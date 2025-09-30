@@ -1,5 +1,5 @@
-import Login from './auth/login/page';
+import SwiftCartPOS from './cashier/page';
 
 export default function HomePage() {
-  return <Login />;
+  return <SwiftCartPOS />;
 }
