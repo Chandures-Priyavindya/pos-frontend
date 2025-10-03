@@ -149,12 +149,12 @@ export default function Dashboard() {
               {/* Products Section */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-slate-800">Products</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">Products</h2>
                   <div className="flex gap-2">
-                    <button className="border border-slate-300 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-slate-50 transition">
+                    <button className="border border-gray-400 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-gray-50 transition text-gray-900">
                       Product Brand <ChevronDown className="h-3 w-3" />
                     </button>
-                    <button className="border border-slate-300 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-slate-50 transition">
+                    <button className="border border-gray-400 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-gray-50 transition text-gray-900">
                       Sort By <ChevronDown className="h-3 w-3" />
                     </button>
                   </div>
@@ -169,7 +169,7 @@ export default function Dashboard() {
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${
                         selectedCategory === category.id 
                           ? 'bg-blue-600 text-white' 
-                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                          : 'bg-white text-gray-900 border border-gray-400 hover:bg-gray-50'
                       }`}
                     >
                       <span>{category.icon}</span>
@@ -181,20 +181,20 @@ export default function Dashboard() {
                 {/* Milk & Cream Section */}
                 <div className="bg-white rounded-lg p-6 mb-6 shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-slate-700">Milk & Cream</h3>
-                    <ChevronDown className="h-4 w-4 text-slate-400" />
+                    <h3 className="text-lg font-medium text-gray-900">Milk & Cream</h3>
+                    <ChevronDown className="h-4 w-4 text-gray-600" />
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {filteredProducts.map(product => (
                       <div 
                         key={product.id} 
-                        className="bg-white border border-slate-200 rounded-lg p-3 cursor-pointer hover:shadow-md transition-shadow"
+                        className="bg-white border border-gray-300 rounded-lg p-3 cursor-pointer hover:shadow-md transition-shadow"
                         onClick={() => addToCart(product)}
                       >
-                        <div className="aspect-square bg-slate-100 rounded-lg mb-3 overflow-hidden">
+                        <div className="aspect-square bg-gray-100 rounded-lg mb-3 overflow-hidden">
                           <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                         </div>
-                        <h4 className="text-sm font-medium text-slate-800 mb-1 line-clamp-2">{product.name}</h4>
+                        <h4 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2">{product.name}</h4>
                         <p className="text-sm font-semibold text-blue-600">Rs. {product.price.toFixed(2)}</p>
                       </div>
                     ))}
@@ -205,22 +205,22 @@ export default function Dashboard() {
                 <div className="space-y-4">
                   <div className="bg-white rounded-lg p-4 shadow-md">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-slate-700">Cheese</h3>
-                      <ChevronDown className="h-4 w-4 text-slate-400 transform rotate-90" />
+                      <h3 className="text-lg font-medium text-gray-900">Cheese</h3>
+                      <ChevronDown className="h-4 w-4 text-gray-600 transform rotate-90" />
                     </div>
                   </div>
                   
                   <div className="bg-white rounded-lg p-4 shadow-md">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-slate-700">Butter & Spreads</h3>
-                      <ChevronDown className="h-4 w-4 text-slate-400 transform rotate-90" />
+                      <h3 className="text-lg font-medium text-gray-900">Butter & Spreads</h3>
+                      <ChevronDown className="h-4 w-4 text-gray-600 transform rotate-90" />
                     </div>
                   </div>
                   
                   <div className="bg-white rounded-lg p-4 shadow-md">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-slate-700">Eggs</h3>
-                      <ChevronDown className="h-4 w-4 text-slate-400 transform rotate-90" />
+                      <h3 className="text-lg font-medium text-gray-900">Eggs</h3>
+                      <ChevronDown className="h-4 w-4 text-gray-600 transform rotate-90" />
                     </div>
                   </div>
                 </div>
@@ -229,11 +229,11 @@ export default function Dashboard() {
               {/* Billing History */}
               <div className="bg-white rounded-lg p-6 shadow-md">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-800 flex items-center gap-2">
+                  <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
                     <FileText className="h-5 w-5" />
                     Billing History
                   </h3>
-                  <button className="border border-slate-300 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-slate-50 transition">
+                  <button className="border border-gray-400 bg-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 hover:bg-gray-50 transition text-gray-900">
                     Today <ChevronDown className="h-3 w-3" />
                   </button>
                 </div>
@@ -246,32 +246,32 @@ export default function Dashboard() {
                           <img src={record.avatar} alt={record.customerName} className="w-full h-full object-cover" />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-800">{record.customerName}</p>
-                          <p className="text-sm text-slate-500">{record.customerNumber}</p>
+                          <p className="font-medium text-gray-900">{record.customerName}</p>
+                          <p className="text-sm text-gray-700">{record.customerNumber}</p>
                         </div>
                       </div>
                       
                       <div className="text-center">
-                        <p className="text-sm text-slate-600">Total Items</p>
-                        <p className="font-medium">{record.totalItems}</p>
+                        <p className="text-sm text-gray-900">Total Items</p>
+                        <p className="font-medium text-gray-900">{record.totalItems}</p>
                       </div>
                       
                       <div className="text-center">
-                        <p className="text-sm text-slate-600">Total amount</p>
-                        <p className="font-medium">Rs. {record.totalAmount.toFixed(2)}</p>
+                        <p className="text-sm text-gray-900">Total amount</p>
+                        <p className="font-medium text-gray-900">Rs. {record.totalAmount.toFixed(2)}</p>
                       </div>
                       
-                      <ChevronDown className="h-4 w-4 text-slate-400" />
+                      <ChevronDown className="h-4 w-4 text-gray-600" />
                     </div>
                   ))}
                 </div>
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-                  <button className="border border-slate-300 bg-white py-3 rounded-lg hover:bg-slate-50 transition font-medium text-sm">VOID</button>
-                  <button className="border border-slate-300 bg-white py-3 rounded-lg hover:bg-slate-50 transition font-medium text-sm">HOLD</button>
-                  <button className="border border-slate-300 bg-white py-3 rounded-lg hover:bg-slate-50 transition font-medium text-sm">DISCOUNT</button>
-                  <button className="border border-slate-300 bg-white py-3 rounded-lg hover:bg-slate-50 transition font-medium text-sm">CUSTOMER LOOKUP</button>
+                  <button className="border border-gray-400 bg-white py-3 rounded-lg hover:bg-gray-50 transition font-medium text-sm text-gray-900">VOID</button>
+                  <button className="border border-gray-400 bg-white py-3 rounded-lg hover:bg-gray-50 transition font-medium text-sm text-gray-900">HOLD</button>
+                  <button className="border border-gray-400 bg-white py-3 rounded-lg hover:bg-gray-50 transition font-medium text-sm text-gray-900">DISCOUNT</button>
+                  <button className="border border-gray-400 bg-white py-3 rounded-lg hover:bg-gray-50 transition font-medium text-sm text-gray-900">CUSTOMER LOOKUP</button>
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function Dashboard() {
             <div className="p-4 border-b">
               <div className="flex items-center gap-2 mb-4">
                 <ShoppingCart className="h-5 w-5 text-blue-600" />
-                <h3 className="text-lg font-semibold">Cart</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Cart</h3>
               </div>
             </div>
 
@@ -290,27 +290,27 @@ export default function Dashboard() {
               <div className="space-y-3">
                 {cartItems.map(item => (
                   <div key={item.id} className="flex items-center gap-3 p-2 border rounded-lg">
-                    <div className="w-12 h-12 bg-slate-100 rounded overflow-hidden flex-shrink-0">
+                    <div className="w-12 h-12 bg-gray-100 rounded overflow-hidden flex-shrink-0">
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm text-slate-800 truncate">{item.name}</p>
-                      <p className="text-xs text-slate-500">{item.category}</p>
+                      <p className="font-medium text-sm text-gray-900 truncate">{item.name}</p>
+                      <p className="text-xs text-gray-700">{item.category}</p>
                       <p className="text-sm font-semibold text-blue-600">Rs.{item.price}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button 
-                        className="h-8 w-8 border border-slate-300 rounded flex items-center justify-center hover:bg-slate-50 transition"
+                        className="h-8 w-8 border border-gray-400 rounded flex items-center justify-center hover:bg-gray-50 transition"
                         onClick={() => updateCartQuantity(item.id, -1)}
                       >
-                        <Minus className="h-3 w-3" />
+                        <Minus className="h-3 w-3 text-gray-900" />
                       </button>
-                      <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                      <span className="w-8 text-center text-sm font-medium text-gray-900">{item.quantity}</span>
                       <button 
-                        className="h-8 w-8 border border-slate-300 rounded flex items-center justify-center hover:bg-slate-50 transition"
+                        className="h-8 w-8 border border-gray-400 rounded flex items-center justify-center hover:bg-gray-50 transition"
                         onClick={() => updateCartQuantity(item.id, 1)}
                       >
-                        <Plus className="h-3 w-3" />
+                        <Plus className="h-3 w-3 text-gray-900" />
                       </button>
                     </div>
                   </div>
@@ -319,23 +319,23 @@ export default function Dashboard() {
             </div>
 
             {/* Cart Summary */}
-            <div className="p-4 border-t bg-slate-50">
+            <div className="p-4 border-t bg-gray-50">
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
-                  <span>Bill</span>
-                  <span>Rs. {subtotal.toFixed(2)}</span>
+                  <span className="text-gray-900">Bill</span>
+                  <span className="text-gray-900">Rs. {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm text-green-600">
                   <span>Discount (10%)</span>
                   <span>Rs. {discount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Tax (5%)</span>
-                  <span>Rs. {tax.toFixed(2)}</span>
+                  <span className="text-gray-900">Tax (5%)</span>
+                  <span className="text-gray-900">Rs. {tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-semibold text-lg pt-2 border-t">
-                  <span>Grand Total</span>
-                  <span>Rs. {grandTotal.toFixed(2)}</span>
+                  <span className="text-gray-900">Grand Total</span>
+                  <span className="text-gray-900">Rs. {grandTotal.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -360,14 +360,14 @@ export default function Dashboard() {
               </button>
 
               <div className="grid grid-cols-3 gap-2">
-                <button className="h-12 border border-slate-300 bg-white rounded-lg flex items-center justify-center hover:bg-slate-50 transition">
-                  <Printer className="h-5 w-5 text-slate-600" />
+                <button className="h-12 border border-gray-400 bg-white rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                  <Printer className="h-5 w-5 text-gray-900" />
                 </button>
-                <button className="h-12 border border-slate-300 bg-white rounded-lg flex items-center justify-center hover:bg-slate-50 transition">
-                  <Mail className="h-5 w-5 text-slate-600" />
+                <button className="h-12 border border-gray-400 bg-white rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                  <Mail className="h-5 w-5 text-gray-900" />
                 </button>
-                <button className="h-12 border border-slate-300 bg-white rounded-lg flex items-center justify-center hover:bg-slate-50 transition">
-                  <MoreHorizontal className="h-5 w-5 text-slate-600" />
+                <button className="h-12 border border-gray-400 bg-white rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                  <MoreHorizontal className="h-5 w-5 text-gray-900" />
                 </button>
               </div>
             </div>
